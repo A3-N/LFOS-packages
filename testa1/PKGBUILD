@@ -8,7 +8,7 @@ url="https://github.com/Donnager-class/LFOS-packages"
 license=('GPL3')
 depends=('python')
 source=("testa1")
-md5sums=('SKIP')
+md5sums=('98194c03596a0e1ae5783c98cd9877eb')
 
 package() {
     install -Dm755 "$srcdir/testa1" "$pkgdir/usr/bin/testa1"

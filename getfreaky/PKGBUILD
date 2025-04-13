@@ -2,13 +2,13 @@
 pkgname=getfreaky
 pkgver=1.0.0
 pkgrel=1
-pkgdesc="LeanFreak Install Scritp"
+pkgdesc="LeanFreak Install Script"
 arch=('any')
 url="https://github.com/Donnager-class/LFOS-packages"
 license=('GPL3')
 depends=('python')
 source=("getfreaky")
-md5sums=('SKIP')  # Replace with real checksum if needed
+md5sums=('1065ed3acba9128e01592bc92888df3d')  
 
 package() {
     install -Dm755 "$srcdir/getfreaky" "$pkgdir/usr/bin/getfreaky"

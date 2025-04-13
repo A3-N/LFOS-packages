@@ -1,0 +1,16 @@
+# Maintainer: A3 <adriaanbosch.com>
+pkgname=test
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A placeholder script for testing packaging"
+arch=('any')
+url="https://github.com/Donnager-class/LFOS-packages"
+license=('GPL3')
+depends=('python')
+source=("test")
+md5sums=('SKIP')
+
+package() {
+    install -Dm755 "$srcdir/test" "$pkgdir/usr/bin/test"
+}
+

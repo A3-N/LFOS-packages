@@ -1,0 +1,16 @@
+# Maintainer: A3 <adriaanbosch.com>
+pkgname=getfreaky
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="LeanFreak Install Scritp"
+arch=('any')
+url="https://github.com/Donnager-class/LFOS-packages"
+license=('GPL3')
+depends=('python')
+source=("getfreaky")
+md5sums=('SKIP')  # Replace with real checksum if needed
+
+package() {
+    install -Dm755 "$srcdir/getfreaky" "$pkgdir/usr/bin/getfreaky"
+}
+

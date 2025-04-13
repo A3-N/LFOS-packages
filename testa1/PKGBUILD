@@ -1,5 +1,5 @@
 # Maintainer: A3 <adriaanbosch.com>
-pkgname=test
+pkgname=testa1
 pkgver=1.0.0
 pkgrel=1
 pkgdesc="A placeholder script for testing packaging"
@@ -7,10 +7,10 @@ arch=('any')
 url="https://github.com/Donnager-class/LFOS-packages"
 license=('GPL3')
 depends=('python')
-source=("test")
+source=("testa1")
 md5sums=('SKIP')
 
 package() {
-    install -Dm755 "$srcdir/test" "$pkgdir/usr/bin/test"
+    install -Dm755 "$srcdir/testa1" "$pkgdir/usr/bin/testa1"
 }
 

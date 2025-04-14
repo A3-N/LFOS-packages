@@ -8,9 +8,8 @@ url="https://github.com/Donnager-class/LFOS-packages"
 license=('GPL3')
 depends=('python')
 source=("getfreaky")
-md5sums=('1065ed3acba9128e01592bc92888df3d')  
+md5sums=('SKIP')  
 
 package() {
     install -Dm755 "$srcdir/getfreaky" "$pkgdir/usr/bin/getfreaky"
 }
-

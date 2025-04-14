@@ -1,0 +1,17 @@
+# Maintainer: A3 <adriaanbosch.com>
+pkgname=lf-stackmask
+pkgver=1.0
+pkgrel=1
+pkgdesc="Stack masquerading script and systemd service for stealthy Linux network presence"
+arch=('any')
+license=('GPL3')
+depends=('iptables' 'iproute2' 'coreutils')
+install=
+source=('lf-stackmask.sh' 'lf-stackmask.service')
+md5sums=('f174307773c429d6696b352901383f3d' 'cbaa39ebc344f391fdf667b98188202f')
+
+package() {
+  install -Dm755 "${srcdir}/lf-stackmask.sh" "${pkgdir}/usr/local/bin/lf-stackmask.sh"
+
+  install -Dm644 "${srcdir}/lf-stackmask.service" "${pkgdir}/etc/systemd/system/lf-stackmask.service"
+}

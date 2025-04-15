@@ -1,6 +1,6 @@
 # LeanFreak OS Package Repository
 
-This is the official custom package repository for [LeanFreak OS](https://github.com/Donnager-class/LeanFreak).
+This is the official custom package repository for [LeanFreak OS](https://github.com/A3-N/LeanFreak).
 
 It includes curated and purpose-built packages used across LeanFreak system tooling, including system configuration utilities, installer components, and lightweight enhancements.
 

@@ -44,6 +44,7 @@ This package acts as a **Stack Masquerading & Network Stealth Tool**
 - Drops ICMP echo-request packets (disables ping responses) to reduce visibility on the network
 - Disables TCP timestamps via sysctl to prevent passive OS fingerprinting from tools like Zeek, p0f, or DPI middleboxes
 - Applies artificial packet delay (via tc netem) to simulate human-like interaction or hide scripted automation
+- Disables avahi-daemon to eliminate mDNS advertisement and reduce local network discovery exposure
 - Persists and reverts system modifications cleanly using snapshots and tracked changes
 
 #### Use Case:
@@ -70,11 +71,11 @@ systemctl enable lf-stackmask
 systemctl start lf-stackmask
 ```
 
-#### misc
+#### whereami
 
 ```
-/usr/local/bin/lf-stackmask.sh	#Main executable script
+/usr/local/bin/lf-stackmask.sh	            #Main executable script
 /etc/systemd/system/lf-stackmask.service	#Optional systemd integration
-/var/lib/lf-stackmask/	#Snapshot + tracking state
+/var/lib/lf-stackmask/	                    #Snapshot + tracking state
 ```
 

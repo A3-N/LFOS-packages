@@ -5,6 +5,7 @@ SNAPSHOT_DIR="/var/lib/lf-stackmask"
 SNAPSHOT_FILE="$SNAPSHOT_DIR/snapshot.txt"
 TC_FILE="$SNAPSHOT_DIR/tc.rules"
 RULES_ADDED="$SNAPSHOT_DIR/rules-added.log"
+AVAHI_STATE_FILE="$SNAPSHOT_DIR/avahi.state"
 
 mkdir -p "$SNAPSHOT_DIR"
 
@@ -22,6 +23,34 @@ snapshot() {
     log "Detected interface: $IFACE"
     sysctl net.ipv4.ip_default_ttl > "$SNAPSHOT_FILE"
     tc qdisc show dev "$IFACE" > "$TC_FILE"
+}
+
+snapshot_avahi_state() {
+    log "Checking avahi-daemon state..."
+    local state=()
+    systemctl is-active --quiet avahi-daemon && state+=("active")
+    systemctl is-enabled --quiet avahi-daemon && state+=("enabled")
+    printf "%s\n" "${state[@]}" > "$AVAHI_STATE_FILE"
+}
+
+disable_avahi() {
+    snapshot_avahi_state
+    log "Disabling avahi-daemon..."
+    systemctl stop avahi-daemon || true
+    systemctl disable avahi-daemon || true
+}
+
+restore_avahi() {
+    if [ -f "$AVAHI_STATE_FILE" ]; then
+        local state
+        mapfile -t state < "$AVAHI_STATE_FILE"
+        [[ " ${state[*]} " =~ " active " ]] && systemctl start avahi-daemon
+        [[ " ${state[*]} " =~ " enabled " ]] && systemctl enable avahi-daemon
+        log "Restored avahi-daemon to previous state: ${state[*]}"
+        rm -f "$AVAHI_STATE_FILE"
+    else
+        log "No avahi-daemon state to restore."
+    fi
 }
 
 add_rule() {
@@ -52,6 +81,7 @@ remove_added_rules() {
 
 apply_lf_stackmask() {
     snapshot
+    disable_avahi
 
     log "Setting TTL to 128"
     sysctl -w net.ipv4.ip_default_ttl=128
@@ -83,6 +113,7 @@ restore_lf_stackmask() {
     rm -f /etc/sysctl.d/99-lf-stackmask.conf
     sysctl --system > /dev/null
 
+    restore_avahi
     remove_added_rules
 
     log "Clearing tc qdisc on $IFACE..."

@@ -75,7 +75,7 @@ systemctl start lf-stackmask
 
 ```
 /usr/local/bin/lf-stackmask.sh	            #Main executable script
-/etc/systemd/system/lf-stackmask.service	#Optional systemd integration
+/etc/systemd/system/lf-stackmask.service    #Optional systemd integration
 /var/lib/lf-stackmask/	                    #Snapshot + tracking state
 ```
 

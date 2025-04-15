@@ -1,7 +1,7 @@
 #!/bin/bash
 for dir in getfreaky lf-stackmask; do
   pushd "$dir"
-  makepkg -f -c  # -f = force rebuild, -c = clean afterward
+  makepkg -f -c  
   mv *.pkg.tar.zst ../repo/
   popd
 done

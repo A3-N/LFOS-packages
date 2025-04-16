@@ -7,11 +7,11 @@ arch=('any')
 license=('GPL3')
 depends=('iptables' 'iproute2' 'coreutils')
 install=
-source=('lf-stackmask.sh' 'lf-stackmask.service')
-md5sums=('431c44490acd9a398391bcdf42457078' 'cbaa39ebc344f391fdf667b98188202f')
+source=('lf-stackmask' 'lf-stackmask.service')
+md5sums=('431c44490acd9a398391bcdf42457078' 'a4c0e933c97f9f6d4c3a24677ef50673')
 
 package() {
-  install -Dm755 "${srcdir}/lf-stackmask.sh" "${pkgdir}/usr/local/bin/lf-stackmask.sh"
+  install -Dm755 "${srcdir}/lf-stackmask" "${pkgdir}/usr/local/bin/lf-stackmask"
 
   install -Dm644 "${srcdir}/lf-stackmask.service" "${pkgdir}/etc/systemd/system/lf-stackmask.service"
 }

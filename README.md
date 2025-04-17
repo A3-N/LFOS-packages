@@ -60,8 +60,8 @@ Stack fingerprinting is a common technique in:
 #### Usage
 
 ```sh
-lf-stackmask.sh start   # Apply spoofing rules
-lf-stackmask.sh stop    # Revert to previous state
+lf-stackmask start   # Apply spoofing rules
+lf-stackmask stop    # Revert to previous state
 ```
 
 or 
